@@ -1,25 +1,36 @@
-# Godot 4.2+ specific ignores
-~*.dll
+# Godot + C# + JetBrains Rider .gitignore
 
-# Godot 4+ specific ignores
-.godot/
-.nomedia
-
-# Godot-specific ignores
+# Godot
 .import/
-export.cfg
-export_credentials.cfg
-*.tmp
+.export/
+*.import
+.godot/
+export_presets.cfg
 
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
-
-# Export outputs
+# Mono / C# build folders
+bin/
+obj/
 *.exe
-# Uncomment if your project does not version PCK files as runtime dependencies.
-# *.pck
+*.dll
+*.pdb
+*.mdb
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+*.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / npm (in case frontend uses it)
+node_modules/
+dist/
+
