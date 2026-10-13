@@ -90,3 +90,5 @@ See the `LICENSE` file for details.
 ---
 
 *"Technology is not the goal. Preserving, sharing, and advancing the knowledge and beauty of origami is the goal."*
+
+omnia vincit amor
