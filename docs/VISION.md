@@ -96,6 +96,8 @@ As digital origami tools, educational systems, fabrication technologies, and res
 
 The project seeks to encourage interoperability, open standards, and structured representation of origami knowledge, allowing future applications, platforms, and technologies to access, share, and build upon this information.
 
+The structured representation of origami knowledge may eventually enable the generation of visual, geometric, and machine-readable outputs from folding instructions and models. Such capabilities could support simulations, educational tools, 3D representations, fabrication workflows, research applications, and future technologies that extend beyond traditional paper folding.
+
 While the initial focus is on creating a community-driven archive and learning platform, the long-term vision includes supporting:
 
 - Digital origami representation
