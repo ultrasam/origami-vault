@@ -2,19 +2,19 @@
 
 ## Purpose
 
-This document defines the functional and non-functional requirements of Origami Vault.
+This document defines the functional and non-functional requirements for Origami Vault.
 
-The purpose of these requirements is to guide design decisions while ensuring alignment with the project's vision:
+The purpose of these requirements is to guide product design, architecture, and implementation decisions while remaining aligned with the project's vision:
 
 > Preserve, share, celebrate, and advance the knowledge and beauty of origami.
 
-Requirements will evolve over time as the platform and community grow.
+These requirements represent the current understanding of the platform and will evolve as the project and community mature.
 
 ---
 
 # User Roles
 
-Origami Vault serves several different audiences.
+Origami Vault serves multiple audiences and perspectives.
 
 ## Visitors
 
@@ -22,29 +22,29 @@ Users who browse content without creating an account.
 
 Goals:
 
-- Discover models
-- Search content
-- Learn about origami creators
+- Discover origami models
+- Learn about creators
 - Explore folding techniques
+- Search and browse content
 
 ---
 
 ## Registered Users
 
-Users with accounts who interact with the platform.
+Users who create accounts and participate in the platform.
 
 Goals:
 
 - Save favorites
-- Build collections
-- Participate in the community
+- Create collections
 - Follow creators
+- Participate in community activities
 
 ---
 
 ## Creators
 
-Individuals and organizations who contribute origami knowledge.
+Individuals or organizations contributing origami knowledge.
 
 Goals:
 
@@ -52,7 +52,7 @@ Goals:
 - Share instructions
 - Preserve creations
 - Receive attribution
-- Engage with the community
+- Collaborate with the community
 
 ---
 
@@ -64,6 +64,7 @@ Goals:
 
 - Access structured information
 - Explore datasets
+- Analyze folding systems
 - Study standards and formats
 - Build new tools and technologies
 
@@ -80,6 +81,12 @@ The platform shall support:
 - User profiles
 - Profile customization
 - Account management
+- Password recovery
+
+Future versions may support:
+
+- Social login providers
+- Multi-factor authentication
 
 ---
 
@@ -90,19 +97,39 @@ The platform shall support:
 - Creating model entries
 - Editing model entries
 - Publishing models
-- Archiving models
 - Draft models
+- Archiving models
 - Attribution management
 
 Each model shall support:
 
 - Name
 - Description
-- Creator
-- Difficulty level
+- Creator information
 - Categories
 - Tags
-- Metadata
+- Difficulty level
+- Recommended paper information
+- Licensing information
+- Source references
+
+---
+
+## Metadata Management
+
+Origami Vault shall preserve structured metadata whenever possible.
+
+Examples include:
+
+- Creator information
+- Publication information
+- Format information
+- Fold complexity
+- Estimated folding time
+- Historical information
+- Licensing information
+
+Metadata should remain searchable and exportable.
 
 ---
 
@@ -111,12 +138,12 @@ Each model shall support:
 The platform shall support:
 
 - Step-by-step instructions
-- Textual instructions
+- Text instructions
 - Instruction notes
 - Instruction revisions
 - Instruction media
 
-Instructions should remain accessible regardless of future visualization technologies.
+Instructions should remain useful regardless of future visualization technologies.
 
 ---
 
@@ -124,17 +151,18 @@ Instructions should remain accessible regardless of future visualization technol
 
 The platform shall support:
 
-- Search by model
+- Search by model name
 - Search by creator
 - Search by category
-- Search by tag
-- Search by metadata
+- Search by tags
+- Search by metadata fields
 
 Future versions may support:
 
 - Search by folding techniques
 - Search by structural characteristics
-- Search by digital representation
+- Search by origami format data
+- Search by machine-readable representations
 
 ---
 
@@ -151,18 +179,19 @@ The platform shall support:
 
 ## Attribution
 
-The platform shall prioritize proper attribution.
+Origami Vault shall prioritize creator attribution.
 
-Supported attribution should include:
+Supported attribution entities may include:
 
 - Original designer
 - Diagram creator
 - Photographer
-- Contributor
 - Editor
+- Contributor
 - Collaborator
+- Organization
 
-Attribution data should be treated as first-class information.
+Attribution should be treated as first-class data.
 
 ---
 
@@ -170,11 +199,11 @@ Attribution data should be treated as first-class information.
 
 ## Purpose
 
-Origami Vault should be as welcoming and accessible to creators as it is to learners.
+Origami Vault should be as welcoming to creators as it is to learners.
 
 The long-term success of the platform depends on reducing the effort required to contribute and preserve origami knowledge.
 
-Creators should spend their time sharing and refining their work, not manually entering repetitive information.
+Creators should spend their time sharing and refining their work rather than performing repetitive data entry.
 
 ---
 
@@ -190,34 +219,32 @@ The platform should reduce friction, not create it.
 
 ## Supported Contribution Workflows
 
-Origami Vault should support multiple ways of contributing content.
-
-No single workflow should be required.
+No single contribution workflow should be mandatory.
 
 ### Manual Creation
 
-Creators should be able to create a model from scratch using a guided form.
+Creators should be able to create models manually using guided forms.
 
-This workflow should support:
+Supported information may include:
 
-- Model metadata
-- Cover images
-- Step-by-step instructions
-- Categories and tags
-- Licensing information
+- Metadata
+- Instructions
+- Images
+- Licensing
+- References
 
 ---
 
 ### Image-Based Workflow
 
-Creators should be able to upload collections of images.
+Creators should be able to upload image collections.
 
-Potential future capabilities:
+Future capabilities may include:
 
-- Bulk image upload
-- Automatic step ordering suggestions
-- Automatic image organization
-- AI-assisted draft generation
+- Bulk uploads
+- Step ordering suggestions
+- Image organization
+- AI-assisted instruction creation
 
 ---
 
@@ -225,43 +252,49 @@ Potential future capabilities:
 
 Creators should be able to upload existing PDF instructions.
 
-Potential future capabilities:
+Future capabilities may include:
 
 - Metadata extraction
 - Image extraction
 - Instruction extraction
-- AI-assisted conversion into editable steps
+- AI-assisted conversion into editable content
 
 ---
 
 ### Format-Based Workflow
 
-Creators should be able to upload supported origami formats such as FOLD and other community standards.
+Creators should be able to upload supported origami formats.
 
-The system should preserve as much information as possible while preparing it for future visualization and interoperability features.
+Examples:
+
+- FOLD
+- ORIPA exports
+- Future community standards
+
+The platform should preserve as much information as possible.
 
 ---
 
 ### Reference-Based Workflow
 
-Creators should be able to create entries that reference external resources.
+Creators should be able to create entries that reference external content.
 
 Examples:
 
 - Personal websites
-- Video tutorials
+- YouTube videos
 - Research publications
 - Existing instruction repositories
 
-Origami Vault should support preservation and attribution even when instructions are not directly hosted by the platform.
+Origami Vault should preserve attribution and discovery value even when content is not hosted directly.
 
 ---
 
 ## Progressive Enhancement
 
-Creators should not be required to provide all available information during initial submission.
+Creators should not be required to provide complete information immediately.
 
-A valid model entry may initially contain:
+A valid submission may initially contain:
 
 - Title
 - Creator
@@ -270,31 +303,210 @@ A valid model entry may initially contain:
 
 Additional information can be added later.
 
-The system should encourage gradual improvement rather than demanding completeness from the start.
+The platform should encourage gradual improvement rather than demanding completeness.
 
 ---
 
 ## Future Creator Assistance
 
-Future versions of Origami Vault may provide creator-assistance features, including:
+Future versions may provide:
 
 - AI-assisted metadata generation
 - AI-assisted instruction extraction
 - Image organization
 - Diagram enhancement
-- Automatic format conversion
-- Automatic standard validation
+- Format conversion
+- Standards validation
 
-These tools should assist creators rather than replace them.
+These systems should assist creators rather than replace them.
 
-Creators should always retain final editorial control over their content.
+Creators should always retain final editorial control.
 
 ---
 
 ## Creator Success Criteria
 
-A creator should be able to contribute useful content to Origami Vault within minutes.
+A creator should be able to contribute useful content within minutes.
 
 Contributing knowledge should feel rewarding rather than burdensome.
 
-The platform should minimize unnecessary effort while maximizing preservation, attribution
+---
+
+# Content Licensing Requirements
+
+Origami Vault shall preserve licensing information for all supported content.
+
+Supported licensing models may include:
+
+- All Rights Reserved
+- Public Domain
+- Creative Commons licenses
+- Custom licenses
+
+Licensing information should:
+
+- Be preserved as metadata
+- Be searchable
+- Be visible to users
+- Remain attached to exported data whenever possible
+
+---
+
+# Revision History Requirements
+
+The platform should preserve the evolution of origami knowledge over time.
+
+Future versions should support:
+
+- Model revisions
+- Instruction revisions
+- Metadata revisions
+- Contributor attribution
+- Change history
+- Historical record preservation
+
+Historical versions should remain accessible whenever practical.
+
+---
+
+# External Resource Requirements
+
+Models may reference external resources.
+
+Supported references may include:
+
+- Videos
+- Websites
+- Books
+- Journals
+- Research papers
+- Existing repositories
+
+Origami Vault should support preserving references even when the referenced content is not hosted by the platform.
+
+---
+
+# Structured Knowledge Requirements
+
+Whenever practical, origami knowledge should be stored in machine-readable forms.
+
+Examples include:
+
+- Metadata
+- Creator information
+- Licensing information
+- Format references
+- Fold representations
+- Structural relationships
+
+Structured information should be preferred over purely visual information whenever practical.
+
+---
+
+# Media Requirements
+
+The platform shall support:
+
+- Cover images
+- Step images
+- Image galleries
+- PDFs
+- Format files
+- External media references
+
+Media should remain separable from metadata to support future migrations and preservation efforts.
+
+---
+
+# Standards and Interoperability Requirements
+
+The platform should encourage interoperability whenever possible.
+
+Goals include:
+
+- Support existing origami formats
+- Preserve machine-readable information
+- Enable future integrations
+- Encourage open standards
+- Support knowledge exchange between systems
+
+Support for formats such as FOLD should be researched early and expanded over time.
+
+---
+
+# Future-Oriented Requirements
+
+The platform should remain flexible enough to support future capabilities including:
+
+- Interactive visualization
+- Folding simulations
+- 3D representations
+- Public APIs
+- Educational systems
+- Research tools
+- Machine-readable fold descriptions
+- Geometry generation
+- Future fabrication workflows
+- Technologies not yet imagined
+
+These features should not compromise accessibility and simplicity.
+
+---
+
+# Non-Functional Requirements
+
+## Accessibility
+
+The platform should be accessible to users of varying technical backgrounds and skill levels.
+
+---
+
+## Performance
+
+The platform should remain responsive and usable as content grows significantly.
+
+---
+
+## Preservation
+
+Long-term preservation of origami knowledge should be prioritized whenever possible.
+
+---
+
+## Extensibility
+
+The architecture should support growth without requiring fundamental redesigns.
+
+---
+
+## Interoperability
+
+The platform should avoid unnecessary lock-in and encourage compatibility with external systems.
+
+---
+
+## Maintainability
+
+The system should be understandable and maintainable by future contributors.
+
+Simplicity should be preferred over unnecessary complexity.
+
+---
+
+# Guiding Principle
+
+Technology is not the goal.
+
+The goal is to preserve, share, celebrate, and advance the knowledge and beauty of origami.
+
+Every requirement should support that mission.
+
+---
+
+Created by Sócrates Medina
+
+Bogotá, Colombia
+
+2026
+
+Omnia Vincit Amor
