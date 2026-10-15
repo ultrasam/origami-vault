@@ -8,9 +8,9 @@ Its purpose is to guide technical decisions while supporting the project's missi
 
 > Preserve, share, celebrate, and advance the knowledge and beauty of origami.
 
-This document focuses on principles, structure, responsibilities, and architectural decisions rather than detailed implementation.
+This document focuses on architectural principles, system structure, responsibilities, and long-term design decisions rather than implementation details.
 
-Architecture decisions should evolve with the project while remaining aligned with the vision of preserving origami knowledge for future generations.
+Architecture decisions should support both current platform goals and future possibilities while prioritizing simplicity, maintainability, interoperability, and preservation.
 
 ---
 
@@ -22,22 +22,23 @@ Origami Vault exists primarily to preserve origami knowledge.
 
 Technology choices should prioritize:
 
-- Longevity
-- Portability
-- Accessibility
-- Data integrity
+- Long-term accessibility
+- Data portability
+- Knowledge preservation
+- Sustainability
+- Maintainability
 
-Knowledge should remain usable regardless of future technology changes.
+Knowledge should remain usable even as technologies change.
 
 ---
 
 ## Knowledge-Centric Design
 
-Origami Vault is not primarily a website, an application, or a file repository.
+Origami Vault is not primarily a website, application, or file repository.
 
 Origami Vault is a platform dedicated to preserving origami knowledge.
 
-Web applications, APIs, visualization systems, importers, exporters, simulations, and future tools should be viewed as interfaces to the underlying knowledge base.
+Web applications, APIs, visualization systems, importers, exporters, simulations, educational experiences, research tools, and future technologies should be viewed as interfaces to the underlying knowledge base.
 
 Architecture decisions should prioritize preservation and portability of knowledge over convenience of implementation.
 
@@ -45,27 +46,28 @@ Architecture decisions should prioritize preservation and portability of knowled
 
 ## Open Standards
 
-Whenever possible, Origami Vault should support and encourage open standards.
+Whenever practical, Origami Vault should support and encourage open standards.
 
 The project should:
 
 - Avoid unnecessary vendor lock-in
 - Encourage interoperability
-- Build upon existing standards when practical
+- Build on existing community standards
+- Preserve compatibility whenever possible
 
 ---
 
 ## Interoperability
 
-Origami Vault should be capable of exchanging information with external systems.
+Origami Vault should exchange information with external systems.
 
 Examples include:
 
 - FOLD-compatible tools
 - ORIPA
 - Ori Studio
-- Research systems
 - Educational platforms
+- Research systems
 - Future origami software ecosystems
 
 ---
@@ -74,14 +76,15 @@ Examples include:
 
 The simplest solution that satisfies current requirements should be preferred.
 
-Advanced features such as:
+Advanced technologies should only be introduced when justified by value.
+
+Examples include:
 
 - Simulation
-- Structured fold languages
 - Geometry generation
+- Structured fold languages
 - Robotics integration
-
-should only be introduced when justified by value and maturity.
+- AI-assisted workflows
 
 ---
 
@@ -89,61 +92,51 @@ should only be introduced when justified by value and maturity.
 
 Architecture decisions should reduce friction for contributors.
 
-The system should support multiple contribution workflows and accommodate creators with different levels of technical expertise.
+The platform should support multiple contribution workflows and accommodate creators with varying levels of technical expertise.
 
 ---
 
 # System Overview
 
-The architecture consists of several layers:
+Origami Vault should be organized around a central knowledge repository.
 
 ```text
-+---------------------------+
-|       Web Application     |
-|       Ruby on Rails       |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|          API Layer        |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|      Knowledge Layer      |
-|  Models, Instructions,    |
-| Metadata, Collections     |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|        PostgreSQL         |
-+-------------+-------------+
-              |
-              v
-+---------------------------+
-|       Object Storage      |
-| Images, PDFs, Formats     |
-+---------------------------+
+                   Users
+                     │
+                     ▼
+          Web Application (Rails)
+                     │
+                     ▼
+                 REST API
+                     │
+                     ▼
+             Knowledge Layer
+                     │
+                     ▼
+                PostgreSQL
+                     │
+                     ▼
+              Object Storage
+
 ```
 
-Future Clients:
+Future clients:
 
 ```text
-+---------------------------+
-|      Godot Client         |
-+---------------------------+
+Godot Client
 
-+---------------------------+
-| Third-Party Applications  |
-+---------------------------+
+Mobile Applications
 
-+---------------------------+
-| Educational Platforms     |
-+---------------------------+
+Educational Applications
+
+Research Tools
+
+Third-Party Integrations
+
+Future Visualization Systems
 ```
 
-All future clients should communicate through APIs rather than directly accessing the database.
+All clients should interact through APIs rather than directly accessing persistence layers.
 
 ---
 
@@ -172,32 +165,95 @@ The repository will initially be maintained as a monorepo.
 
 ## Initial Deployment
 
-Origami Vault will initially be developed as a modular monolith.
+Origami Vault will begin as a modular monolith.
 
-Responsibilities will remain within a single Rails application:
+The Rails application will contain:
 
 - Authentication
 - User management
-- Content management
+- Creator tools
 - Search
-- Collections
 - Metadata management
-- API delivery
+- Collections
+- APIs
+- Administration
 
-Microservices should not be introduced prematurely.
+This reduces operational complexity and encourages rapid iteration.
 
 ---
 
-## Scaling Strategy
+## Future Scaling
 
-Future service separation may be considered when justified by:
+Future service separation may occur when justified by:
 
 - Performance requirements
-- Development complexity
+- Team growth
 - Operational needs
-- Community growth
+- Community size
 
-Until then, simplicity should be prioritized.
+Premature microservices should be avoided.
+
+---
+
+# Domain Architecture
+
+Origami Vault centers around preserving origami knowledge.
+
+Current core hierarchy:
+
+```text
+Creator
+    │
+    ▼
+Origami Model
+    │
+    ▼
+Instructions
+    │
+    ▼
+Instruction Steps
+    │
+    ▼
+Media
+```
+
+Supporting entities:
+
+```text
+Users
+Collections
+Licenses
+References
+Format Files
+Revisions
+Tags
+Categories
+```
+
+Future entities may emerge as the platform evolves.
+
+---
+
+# Knowledge Preservation Strategy
+
+Knowledge should never be tightly coupled to a specific file format.
+
+Files are representations of knowledge.
+
+Knowledge itself should remain independently preserved whenever practical.
+
+Examples:
+
+- Images
+- PDFs
+- FOLD files
+- Videos
+
+should be viewed as representations of preserved information rather than the information itself.
+
+Whenever practical, important information should be captured in structured forms.
+
+Structured information should survive even if source files become unavailable.
 
 ---
 
@@ -217,7 +273,7 @@ Primary Database:
 
 ## Responsibilities
 
-The backend is the source of truth for all preserved knowledge.
+The backend is the authoritative source of truth.
 
 Responsibilities include:
 
@@ -226,11 +282,11 @@ Responsibilities include:
 - User management
 - Creator management
 - Model management
+- Revision management
 - Metadata management
 - Search
-- Revision history
-- API endpoints
 - File management
+- API delivery
 
 ---
 
@@ -238,15 +294,15 @@ Responsibilities include:
 
 Initial authentication:
 
-- Email and password
+- Email/password accounts
 
-Future authentication may include:
+Future authentication:
 
 - GitHub
 - Google
 - Microsoft
 
-Authentication systems should remain isolated from domain models whenever practical.
+Authentication should remain loosely coupled from domain models.
 
 ---
 
@@ -254,31 +310,48 @@ Authentication systems should remain isolated from domain models whenever practi
 
 ## Web Platform
 
-Primary user interface.
+Primary interface.
 
 Responsibilities:
 
-- Browsing
 - Search
-- Content management
+- Browsing
+- Discovery
 - Community features
 - Creator workflows
+- Administration
+
+---
+
+## Visualization Clients
+
+Origami Vault may provide multiple visualization experiences.
+
+Potential clients include:
+
+- Rails web application
+- Godot desktop application
+- Mobile applications
+- Educational experiences
+- Research tooling
+
+The architecture should remain independent of any specific client technology.
 
 ---
 
 ## Godot Client
 
-Future component.
+Godot is currently the preferred platform for advanced visualization.
 
-Responsibilities:
+Potential responsibilities:
 
-- Advanced visualization
-- Interactive learning experiences
-- Fold visualizations
+- Interactive model viewing
+- Fold visualization
+- Educational experiences
 - Experimental interfaces
-- 3D exploration
+- Future simulation systems
 
-The Godot client should consume APIs rather than directly accessing persistence layers.
+The Godot client should consume APIs and never directly access databases.
 
 ---
 
@@ -286,21 +359,19 @@ The Godot client should consume APIs rather than directly accessing persistence 
 
 ## Core Domains
 
-The core knowledge model should include:
-
 ### Users
 
-Platform accounts.
+Platform members.
 
 ### Creators
 
-Origami designers and contributors.
+Designers, artists, organizations, and contributors.
 
 Creators may or may not be registered users.
 
 ### Models
 
-Origami creations and their associated metadata.
+Origami creations and associated metadata.
 
 ### Instructions
 
@@ -308,27 +379,33 @@ Folding knowledge.
 
 ### Steps
 
-Individual instruction steps.
+Individual instructional stages.
 
 ### Media
 
-Images, files, diagrams, PDFs, and related assets.
+Images, PDFs, diagrams, videos, and supporting files.
 
 ### Collections
 
-User-curated groupings of models.
+Curated groupings of models.
 
 ### References
 
-External resources.
+External resources and citations.
 
 ### Licenses
 
-Content ownership and usage rights.
+Ownership and usage rights.
 
 ### Format Files
 
-Machine-readable representations such as FOLD.
+Machine-readable representations.
+
+Examples:
+
+- FOLD
+- ORIPA exports
+- Future standards
 
 ---
 
@@ -336,21 +413,23 @@ Machine-readable representations such as FOLD.
 
 Metadata should be treated as first-class information.
 
-Examples include:
+Examples:
 
 - Creator
 - Title
 - Description
-- Categories
 - Tags
+- Categories
 - Difficulty
+- Attribution
 - Licensing
-- Dates
 - Source references
+- Historical information
 
 Metadata should be:
 
 - Searchable
+- Queryable
 - Exportable
 - Versionable
 - Preserved long term
@@ -359,19 +438,19 @@ Metadata should be:
 
 # Search Strategy
 
-Search is a core capability of Origami Vault.
+Search is a core platform capability.
 
-Version 0.1:
+## Version 0.1
 
 - PostgreSQL full-text search
 
-Future evaluation:
+## Future Evaluation
 
 - Elasticsearch
 - OpenSearch
 - Meilisearch
 
-Search infrastructure should remain replaceable without modifying business logic.
+Search infrastructure should remain replaceable without significant changes to business logic.
 
 ---
 
@@ -386,10 +465,9 @@ Stores:
 - Records
 - Metadata
 - Relationships
+- Revisions
 - Attribution
 - References
-
----
 
 ## Object Storage
 
@@ -398,15 +476,34 @@ Stores:
 - Images
 - PDFs
 - FOLD files
+- Diagrams
 - Future format files
 
 Potential providers:
 
-- AWS S3
-- Backblaze B2
 - Cloudflare R2
+- Backblaze B2
+- AWS S3
 
 Development environments may use local storage.
+
+---
+
+# Import and Export Architecture
+
+Origami Vault should support multiple methods of importing and exporting knowledge.
+
+Examples:
+
+- Manual entry
+- Image collections
+- PDF instructions
+- FOLD files
+- External references
+
+Importers and exporters should remain separate from domain models.
+
+Internal knowledge representations should remain stable even as supported formats evolve.
 
 ---
 
@@ -423,9 +520,9 @@ Supported formats may include:
 - ORIPA exports
 - Future community standards
 
-Importers and exporters should serve as translation layers between external standards and internal representations.
+Importers and exporters should translate between external formats and internal knowledge models.
 
-The project should prefer interoperability and extension over replacement whenever practical.
+The platform should favor extension and interoperability over replacement whenever practical.
 
 ---
 
@@ -449,9 +546,32 @@ API domains may include:
 - Collections
 - Search
 - Metadata
+- Licensing
 - Formats
 
-APIs should support future clients without requiring architectural redesign.
+Future clients should not require architectural redesign.
+
+---
+
+# AI Assistance Strategy
+
+Artificial intelligence should assist creators and curators rather than replace them.
+
+Potential future uses include:
+
+- Metadata generation
+- Instruction extraction
+- Image organization
+- Format conversion
+- Validation assistance
+
+AI-generated information should:
+
+- Remain reviewable
+- Remain editable
+- Never become authoritative without human oversight
+
+Humans remain responsible for published content.
 
 ---
 
@@ -462,31 +582,47 @@ Knowledge preservation includes preserving history.
 Future versions should support:
 
 - Model revisions
-- Instruction revisions
 - Metadata revisions
-- Contributor attribution
+- Instruction revisions
+- Attribution history
 - Historical snapshots
 
-Version history should be treated as part of the preserved knowledge.
+Version history should be considered part of the preserved knowledge.
+
+---
+
+# Preservation Strategy
+
+Origami Vault should prioritize long-term preservation.
+
+Future systems should support:
+
+- Database backups
+- Media backups
+- Exportable datasets
+- Format-independent preservation
+
+Knowledge should never become solely dependent upon proprietary systems whenever practical.
 
 ---
 
 # Future Architectural Directions
 
-The following items are intentionally outside the MVP but should remain architectural possibilities:
+These capabilities are intentionally outside the MVP:
 
 - Fold simulation
-- Interactive folding engines
 - Structured fold languages
+- Machine-readable folding workflows
 - Geometry generation
 - Blender export
 - STL generation
-- Educational systems
-- Research tooling
 - Public SDKs
-- Robotic folding integration
+- Educational tooling
+- Research platforms
+- AR/VR experiences
+- Robotic folding systems
 
-Current decisions should avoid making these future capabilities impossible.
+Current architectural decisions should avoid making these possibilities impossible.
 
 ---
 
@@ -496,9 +632,10 @@ The architecture is successful if it:
 
 - Preserves knowledge effectively
 - Remains understandable
-- Encourages interoperability
-- Supports community growth
+- Supports contributors
+- Supports interoperability
 - Supports future innovation
+- Scales responsibly
 - Remains maintainable by future contributors
 
 ---
@@ -509,7 +646,7 @@ The most important asset of Origami Vault is not its code.
 
 It is the knowledge that the platform preserves.
 
-Every architectural decision should prioritize preservation, clarity, interoperability, and long-term sustainability.
+Every architectural decision should prioritize preservation, clarity, interoperability, accessibility, and long-term sustainability.
 
 ---
 
@@ -520,3 +657,5 @@ Bogotá, Colombia
 2026
 
 Omnia Vincit Amor
+
+A phrase that accompanied me at my high school graduation and continues to remind me why projects worth building are often born from passion, curiosity, and love for creation.
