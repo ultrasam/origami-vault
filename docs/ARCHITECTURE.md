@@ -117,7 +117,6 @@ Origami Vault should be organized around a central knowledge repository.
                      │
                      ▼
               Object Storage
-
 ```
 
 Future clients:
@@ -509,10 +508,28 @@ Internal knowledge representations should remain stable even as supported format
 
 # Standards Layer
 
-Origami Vault should maintain a clear separation between:
+## FOLD Strategy
 
-- Internal knowledge models
-- External file formats
+Origami Vault recognizes FOLD (Flexible Origami List Datastructure) as a primary machine-readable interchange format within the computational origami ecosystem.
+
+The platform shall:
+
+- Treat FOLD files as first-class digital artifacts.
+- Preserve original FOLD artifacts immutably.
+- Preserve declared FOLD specification versions.
+- Preserve supported and unknown namespaced properties whenever practical.
+- Record parsing, validation, conversion, and transformation provenance.
+- Support interoperability with existing origami software ecosystems.
+
+FOLD is an important representation format, but it is not the canonical representation of origami knowledge within Origami Vault.
+
+The internal knowledge model must remain independent of any single external format.
+
+For detailed analysis and implementation guidance, see:
+
+```text
+docs/research/FOLD_FORMAT_RESEARCH.md
+```
 
 Supported formats may include:
 
@@ -591,6 +608,60 @@ Version history should be considered part of the preserved knowledge.
 
 ---
 
+# Artifact Preservation Architecture
+
+Origami Vault distinguishes between:
+
+- Source artifacts
+- Parsed representations
+- Normalized metadata
+- Validation results
+- Derived artifacts
+
+Original uploaded files represent preserved historical records and should never be modified after ingestion.
+
+Derived artifacts such as:
+
+- Previews
+- Generated meshes
+- Conversions
+- Thumbnails
+- Visualizations
+
+should be stored separately and linked through provenance relationships.
+
+FOLD artifacts, PDFs, images, videos, and future formats should all be treated as preserved source artifacts.
+
+Interpretations, normalized metadata, validation results, previews, converted files, and future simulation outputs should be stored separately as derived representations linked through provenance records.
+
+---
+
+# Provenance Architecture
+
+Every significant transformation within Origami Vault should be traceable.
+
+Examples include:
+
+- Format conversion
+- Metadata extraction
+- Validation
+- Geometry generation
+- Future simulation workflows
+
+Transformation records should preserve:
+
+- Source artifact
+- Output artifact
+- Tool used
+- Tool version
+- Timestamp
+- Warnings
+- Validation results
+
+Preservation of provenance is essential to the long-term mission of preserving origami knowledge.
+
+---
+
 # Preservation Strategy
 
 Origami Vault should prioritize long-term preservation.
@@ -645,6 +716,10 @@ The architecture is successful if it:
 The most important asset of Origami Vault is not its code.
 
 It is the knowledge that the platform preserves.
+
+Formats such as FOLD are valuable preservation and interoperability tools, but they remain representations of origami knowledge rather than the knowledge itself.
+
+Architecture decisions should preserve the distinction between knowledge, representations, and derived interpretations.
 
 Every architectural decision should prioritize preservation, clarity, interoperability, accessibility, and long-term sustainability.
 

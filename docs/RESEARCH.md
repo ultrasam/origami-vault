@@ -2,166 +2,161 @@
 
 ## Purpose
 
-This document captures research findings, investigations, and architectural decisions that help guide the development of Origami Vault.
+This document tracks research efforts, investigations, open questions, and future areas of study that help guide the development of Origami Vault.
+
+Detailed research findings should be documented in dedicated research documents whenever a topic grows large enough to warrant its own analysis.
+
+---
+## Reference Research Documents
+
+```text
+docs/research/FOLD_FORMAT_RESEARCH.md
+```
+# Completed Research
+
+## FOLD Format Research
+
+Status: Completed
+
+Reference:
+
+- docs/research/FOLD_FORMAT_RESEARCH.md
+
+Summary:
+
+The FOLD file format was evaluated as the primary machine-readable origami interchange format currently supported by the computational origami ecosystem.
+
+Key conclusions:
+
+- FOLD is an important interchange format but is not a complete representation of origami knowledge.
+- Origami Vault will treat FOLD as a first-class digital artifact.
+- Origami Vault's internal knowledge model will remain independent of any individual format.
+- Instructional content and FOLD frames should remain separate but linkable.
+- Multiple versions of FOLD must be preserved and interpreted through version-aware processing.
+- Original uploaded artifacts should remain immutable.
+- Unknown and custom namespaced properties should be preserved whenever practical.
+- Provenance and transformation history are essential preservation concerns.
+
+See the FOLD research document for details.
 
 ---
 
-# Research Backlog
+# Active Research
 
-## High Priority
-
-### FOLD Format Research
-
-Status: Not Started
-
-Goal:
-
-Determine whether the FOLD format can serve as a primary interchange format for Origami Vault.
-
-Questions:
-
-- What information does FOLD store?
-- What information does it not store?
-- Can it represent fold history?
-- Can it represent step-by-step instructions?
-- How widely adopted is it?
-- How difficult is it to parse in Ruby on Rails?
-- How difficult is it to parse in C#?
-- Can it be extended without breaking compatibility?
-- Could it serve as the foundation for future visualization and simulation features?
-
-Deliverables:
-
-- FOLD format analysis
-- Example FOLD files
-- Rails parsing proof-of-concept
-- Godot/C# parsing proof-of-concept
-- Format recommendation
-
----
-
-### ORIPA Research
+## ORIPA Research
 
 Status: Not Started
 
 Goals:
 
-- Understand ORIPA capabilities
-- Understand export formats
+- Understand OPX structure
 - Identify interoperability opportunities
+- Evaluate conversion fidelity between OPX and FOLD
 
 ---
 
-### Ori Studio Research
+## Ori Studio Research
 
 Status: Not Started
 
 Goals:
 
-- Review supported file formats
+- Review supported formats
 - Review simulation capabilities
 - Identify integration opportunities
 
 ---
 
-### Origami Simulator Research
+## Origami Simulator Research
 
 Status: Not Started
 
 Goals:
 
 - Understand simulation approaches
-- Review mathematical models
-- Evaluate future applicability
+- Evaluate suitability for future Origami Vault visualization features
 
 ---
 
-### Existing Origami Databases
+## Origami Community & Databases
 
 Status: Not Started
 
 Goals:
 
-- Compare available repositories
-- Identify strengths and weaknesses
-- Discover unmet needs
+- Compare existing repositories
+- Identify unmet creator needs
+- Identify preservation gaps
 
 ---
 
-# Architecture Research
+# Implementation Research
 
-## Storage Strategies
+## Ruby Parser Prototype
 
-Status: Not Started
+Status: Planned
 
-Research:
+Goals:
 
-- PostgreSQL
-- File storage
-- Image storage
-- Metadata indexing
-
----
-
-## API Design
-
-Status: Not Started
-
-Research:
-
-- REST
-- GraphQL
-- Public API strategies
+- Parse FOLD 1.2
+- Preserve unknown properties
+- Validate specifications
+- Generate import metadata
 
 ---
 
-## Visualization Strategies
+## C# / Godot Parser Prototype
 
-Status: Not Started
+Status: Planned
 
-Research:
+Goals:
 
-- Godot rendering approaches
-- Mesh generation
-- Fold visualization
-- 3D export possibilities
+- Parse FOLD documents
+- Validate frame inheritance
+- Build future visualization pipeline
 
 ---
 
-# Naming Research
+## Compatibility Matrix
 
-## Candidate Name
+Status: Planned
 
-Origami Vault
+Goals:
 
-### Similar Project Discovered
+Track compatibility between:
 
-OrigamiVault
+- FOLD
+- OPX
+- ORIPA
+- Ori Studio
+- Origami Simulator
+- Future formats
 
-Purpose:
+---
 
-Encrypted secret storage and recovery utility.
+# Open Questions
 
-Assessment:
+The following questions remain unresolved:
 
-Different audience, different domain, different mission.
-
-Decision:
-
-Keep the name "Origami Vault" and reassess only if future branding concerns arise.
+- What coordinate convention should be used for Godot visualization?
+- What coordinate convention should be used for Blender exports?
+- What subset of FOLD data should be indexed for search?
+- How should imported metadata be verified and curated over time?
+- What future standards should Origami Vault support beyond FOLD?
 
 ---
 
 # Future Research Topics
 
-- Universal origami representation
 - Structured fold languages
-- Machine-readable origami workflows
+- Universal origami representations
+- Geometry generation
 - Blender export
 - STL generation
-- Educational tools
+- Educational systems
 - Robotic folding systems
-- AR/VR experiences
+- AR/VR origami experiences
+- Automatic diagram generation
 
 ---
 
