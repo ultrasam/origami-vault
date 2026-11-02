@@ -22,7 +22,7 @@ User-facing language and model terminology may differ. This document uses the fo
 |------------------|---------------------------------------------------------------------------------------|----------------------------------------------|
 | Model            | User-facing term for an origami design. Corresponds to an **OrigamiWork**.            | Catalog                                      |
 | Work             | The conceptual origami design.                                                        | Catalog                                      |
-| Edition          | A published expression of a work (book, diagram, video, etc.).                        | Catalog                                      |
+| Edition          | A distinct published, translated, reconstructed, adapted, or otherwise curated expression of a work. A container such as a book is not automatically an edition. | Catalog                                      |
 | Digital Artifact | A file, media asset, or digital representation. Never the work itself.                | Artifact                                     |
 | User             | An account on the platform.                                                           | Authentication (outside the knowledge model) |
 | Party            | A person or organization that can receive credit. May or may not be a User.           | Attribution                                  |
@@ -131,7 +131,7 @@ Each work shall support:
 - Credits (Attribution)
 - Classifications, techniques, and tags (Taxonomy)
 - Difficulty level (Instruction)
-- Recommended paper information
+- Recommended paper information (Instruction)
 - Licensing information (Rights)
 - Source references (External Reference)
 
@@ -422,7 +422,7 @@ The platform should preserve the evolution of origami knowledge over time.
 
 Future versions should support:
 
-- Work and edition revisions
+- Edition revisions
 - Instruction revisions
 - Metadata revisions
 - Contributor attribution
@@ -430,6 +430,8 @@ Future versions should support:
 - Historical record preservation
 
 Historical versions should remain accessible whenever practical.
+
+Changes to a work record are preserved through provenance rather than a work-level revision record.
 
 ---
 

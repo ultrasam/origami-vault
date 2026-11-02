@@ -413,8 +413,8 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 
 1. An Origami Vault model is not a FOLD file.
 2. `OrigamiWork` represents the conceptual design.
-3. `OrigamiEdition` represents a particular published or revised expression of a work.
-4. An edition may have zero, one, or many FOLD artifacts.
+3. `OrigamiEdition` represents a distinct published, translated, reconstructed, adapted, or otherwise curated expression of a work. A revised release is a new edition only when it is intentionally assigned a distinct edition or publication identity.
+4. A work or edition may have zero, one, or many FOLD artifacts.
 5. Every uploaded artifact is immutable; replacement creates a new artifact version.
 6. Source bytes, parsed JSON, normalized metadata, validation results, and derived outputs are separate concerns.
 7. `InstructionStep` and `FoldFrame` are separate but linkable.
@@ -434,10 +434,15 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 
 - `OrigamiWork`
 - `OrigamiEdition`
+- `WorkTitle`
+- `WorkRelationship`
+- `Revision`
+
+### Taxonomy
+
 - `Category`
 - `Tag`
 - `Technique`
-- `DifficultyAssessment`
 
 ### Attribution and Rights
 
@@ -456,6 +461,7 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 - `StepAnnotation`
 - `StepMedia`
 - `StepFrameLink`
+- `DifficultyAssessment`
 
 ### Digital Artifacts
 
@@ -499,11 +505,13 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 - `Collection`
 - `CollectionItem`
 - `Favorite`
-- `Revision`
-- `ExternalReference`
 - `PreservationEvent`
 
-Not all of these concepts need separate database tables in the MVP. `DATA_MODEL.md` should classify each as an MVP entity, embedded record, future entity, or research concept.
+### External Reference
+
+- `ExternalReference`
+
+Not all of these concepts need separate database tables in the MVP. The specifications in `docs/DATA_MODEL/` should classify each as an MVP entity, embedded record, future entity, or research concept.
 
 ---
 
@@ -512,7 +520,7 @@ Not all of these concepts need separate database tables in the MVP. `DATA_MODEL.
 For each FOLD upload:
 
 1. Store the immutable original file in object storage.
-2. Store filename, MIME type, size, checksum, uploader, source, rights information, upload time, and associated edition in relational records.
+2. Store filename, MIME type, size, checksum, uploader, source, rights information, upload time, and associated work or edition in relational records.
 3. Optionally store parsed JSON in PostgreSQL JSONB while preserving the original file as the source of record.
 4. Normalize only useful searchable fields initially:
    - Declared specification version
@@ -708,7 +716,7 @@ Record source, target, converter version, parameters, warnings, preserved fields
 
 ## 28. Final Recommendation
 
-Origami Vault is ready to proceed with `DATA_MODEL.md`.
+Origami Vault is ready to proceed with the specifications in `docs/DATA_MODEL/`.
 
 FOLD should be treated as:
 

@@ -147,6 +147,7 @@ The most important project documents can be found in the `docs` folder:
 - docs/RESEARCH.md
 - docs/FOUNDER.md
 - docs/DATA_MODEL/00_DATA_MODEL_PRINCIPLES.md
+- docs/DATA_MODEL/01_CATALOG_DOMAIN.md
 
 Recommended reading order:
 
@@ -154,8 +155,9 @@ Recommended reading order:
 2. ROADMAP.md
 3. ARCHITECTURE.md
 4. 00_DATA_MODEL_PRINCIPLES.md
-5. REQUIREMENTS.md
-6. RESEARCH.md
+5. 01_CATALOG_DOMAIN.md
+6. REQUIREMENTS.md
+7. RESEARCH.md
 ---
 ## MVP Focus
 The initial releases of Origami Vault will prioritize:
@@ -174,7 +176,8 @@ Primary MVP domains:
 - Instruction
 - Artifact
 - FOLD
-- Provenance 
+- Provenance
+- External Reference
 
 Future releases may expand into community systems, reputation mechanisms, advanced notation support, geometry editing, simulation capabilities, and additional interchange standards.
 
