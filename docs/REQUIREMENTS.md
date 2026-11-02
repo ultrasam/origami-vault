@@ -10,6 +10,25 @@ The purpose of these requirements is to guide product design, architecture, and 
 
 These requirements represent the current understanding of the platform and will evolve as the project and community mature.
 
+The conceptual data model in `docs/DATA_MODEL/` is authoritative for the meaning of the concepts referenced here.
+
+---
+
+# Terminology
+
+User-facing language and model terminology may differ. This document uses the following terms:
+
+| Term             | Meaning                                                                               | Owning Domain                                |
+|------------------|---------------------------------------------------------------------------------------|----------------------------------------------|
+| Model            | User-facing term for an origami design. Corresponds to an **OrigamiWork**.            | Catalog                                      |
+| Work             | The conceptual origami design.                                                        | Catalog                                      |
+| Edition          | A published expression of a work (book, diagram, video, etc.).                        | Catalog                                      |
+| Digital Artifact | A file, media asset, or digital representation. Never the work itself.                | Artifact                                     |
+| User             | An account on the platform.                                                           | Authentication (outside the knowledge model) |
+| Party            | A person or organization that can receive credit. May or may not be a User.           | Attribution                                  |
+| Credit           | A record linking a Party to a work, edition, or artifact through a contribution role. | Attribution                                  |
+| Claim            | Information that has been submitted or imported but not necessarily verified.         | Provenance                                   |
+
 ---
 
 # User Roles
@@ -45,6 +64,8 @@ Goals:
 ## Creators
 
 Individuals or organizations contributing origami knowledge.
+
+Creators who contribute to the platform are Users linked to a Party. Designers who never use the platform, including historical designers, are represented as Parties only and still receive full attribution.
 
 Goals:
 
@@ -90,28 +111,40 @@ Future versions may support:
 
 ---
 
-## Origami Model Management
+## Origami Work Management
 
 The platform shall support:
 
-- Creating model entries
-- Editing model entries
-- Publishing models
-- Draft models
-- Archiving models
+- Creating work entries
+- Editing work entries
+- Publishing works
+- Draft works
+- Archiving works
+- Recording editions of a work
+- Recording relationships between works
 - Attribution management
 
-Each model shall support:
+Each work shall support:
 
-- Name
-- Description
-- Creator information
-- Categories
-- Tags
-- Difficulty level
+- Title (Catalog)
+- Description (Catalog)
+- Credits (Attribution)
+- Classifications, techniques, and tags (Taxonomy)
+- Difficulty level (Instruction)
 - Recommended paper information
+- Licensing information (Rights)
+- Source references (External Reference)
+
+Each edition shall support:
+
+- Link to its work
+- Edition title, if different from the work
+- Publication information
+- Credits specific to the edition (for example, Diagrammer or editor)
 - Licensing information
-- Source references
+- Linked digital artifacts
+
+Work entries shall be distinct from the files that represent them. Uploading a file never creates a work by itself without a work record.
 
 ---
 
@@ -131,6 +164,13 @@ Examples include:
 
 Metadata should remain searchable and exportable.
 
+Metadata shall also:
+
+- Record its provenance (uploaded, imported, inherited, computed, converted, inferred, curated, or verified).
+- Treat imported metadata as a claim rather than authoritative knowledge.
+- Allow values to be explicitly recorded as unknown.
+- Allow conflicting claims to coexist when evidence supports multiple interpretations.
+
 ---
 
 ## Instruction Management
@@ -145,14 +185,16 @@ The platform shall support:
 
 Instructions should remain useful regardless of future visualization technologies.
 
+Instruction steps shall be modeled independently of geometry. A step may link to one or more geometric states (for example, FOLD frames), but geometry shall not be required to create an instruction.
+
 ---
 
 ## Search and Discovery
 
 The platform shall support:
 
-- Search by model name
-- Search by creator
+- Search by work title, including alternate titles
+- Search by credited party
 - Search by category
 - Search by tags
 - Search by metadata fields
@@ -181,7 +223,9 @@ The platform shall support:
 
 Origami Vault shall prioritize creator attribution.
 
-Supported attribution entities may include:
+Credit shall be given to Parties, which may be individuals or organizations.
+
+Supported contribution roles may include:
 
 - Original designer
 - Diagram creator
@@ -189,9 +233,24 @@ Supported attribution entities may include:
 - Editor
 - Contributor
 - Collaborator
-- Organization
 
 Attribution should be treated as first-class data.
+
+Each credit shall support:
+
+- Party receiving credit
+- Contribution role
+- Attribution target (work, edition, or artifact)
+- Attribution source
+- Attribution confidence
+- Attribution status
+
+The platform shall support:
+
+- Parties that are not registered users, including historical designers
+- Unknown designers as an explicit, valid state
+- Multiple conflicting attribution claims with their evidence
+- Attribution history
 
 ---
 
@@ -203,7 +262,7 @@ Origami Vault should be as welcoming to creators as it is to learners.
 
 The long-term success of the platform depends on reducing the effort required to contribute and preserve origami knowledge.
 
-Creators should spend their time sharing and refining their work rather than performing repetitive data entry.
+Creators should spend their time-sharing and refining their work rather than performing repetitive data entry.
 
 ---
 
@@ -297,11 +356,13 @@ Creators should not be required to provide complete information immediately.
 A valid submission may initially contain:
 
 - Title
-- Creator
+- Creator (which may be recorded as unknown)
 - Description
 - Cover image
 
 Additional information can be added later.
+
+Incomplete information shall never prevent preservation.
 
 The platform should encourage gradual improvement rather than demanding completeness.
 
@@ -342,6 +403,9 @@ Supported licensing models may include:
 - Public Domain
 - Creative Commons licenses
 - Custom licenses
+- Unknown
+
+Licensing may differ between a work, its editions, and individual artifacts, and shall be recordable at each level.
 
 Licensing information should:
 
@@ -358,7 +422,7 @@ The platform should preserve the evolution of origami knowledge over time.
 
 Future versions should support:
 
-- Model revisions
+- Work and edition revisions
 - Instruction revisions
 - Metadata revisions
 - Contributor attribution
@@ -371,7 +435,7 @@ Historical versions should remain accessible whenever practical.
 
 # External Resource Requirements
 
-Models may reference external resources.
+Works and editions may reference external resources.
 
 Supported references may include:
 
@@ -415,6 +479,42 @@ The platform shall support:
 - External media references
 
 Media should remain separable from metadata to support future migrations and preservation efforts.
+
+---
+
+# Artifact Preservation Requirements
+
+Uploaded files are preservation records.
+
+The platform shall:
+
+- Preserve original uploaded artifacts without modification.
+- Never overwrite preservation copies.
+- Record checksums for preserved artifacts.
+- Store derived representations (previews, thumbnails, conversions) separately from originals.
+- Link derived representations to their source artifacts.
+- Preserve unknown or unsupported data within artifacts whenever practical.
+
+For FOLD artifacts, the platform shall additionally preserve the declared specification version and any namespaced properties, including unrecognized ones, whenever practical.
+
+---
+
+# Provenance Requirements
+
+Users and maintainers should be able to determine where information came from and how it was produced.
+
+The platform shall record provenance for:
+
+- Uploads
+- Imports
+- Format conversions
+- Metadata extraction
+- Validation results
+- Curation and verification decisions
+
+Transformation records should include the source, output, tool, tool version, timestamp, and any warnings.
+
+Curated or verified conclusions shall not destroy the claims and evidence they were derived from.
 
 ---
 

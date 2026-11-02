@@ -145,6 +145,8 @@ All clients should interact through APIs rather than directly accessing persiste
 origami-vault
 
 ├── docs
+│   ├── DATA_MODEL
+│   └── research
 ├── backend
 │   └── rails-api
 ├── frontend
@@ -168,14 +170,14 @@ Origami Vault will begin as a modular monolith.
 
 The Rails application will contain:
 
-- Authentication
-- User management
-- Creator tools
+- Authentication and user accounts
+- Domain modules (Catalog, Attribution, Rights, Instruction, Artifact, FOLD, Provenance)
+- Contribution and curation workflows
 - Search
-- Metadata management
-- Collections
 - APIs
 - Administration
+
+Module boundaries should follow domain boundaries so that domains can be separated later if needed.
 
 This reduces operational complexity and encourages rapid iteration.
 
@@ -198,38 +200,106 @@ Premature microservices should be avoided.
 
 Origami Vault centers around preserving origami knowledge.
 
-Current core hierarchy:
+The canonical knowledge model is defined in:
 
 ```text
-Creator
-    │
-    ▼
-Origami Model
-    │
-    ▼
-Instructions
-    │
-    ▼
-Instruction Steps
-    │
-    ▼
-Media
+docs/DATA_MODEL/00_DATA_MODEL_PRINCIPLES.md
 ```
 
-Supporting entities:
+This section summarizes how that model shapes the architecture. Where the two documents differ, the data model documents are authoritative.
+
+---
+
+## Core Distinction
+
+The architecture is built around three distinct concepts:
 
 ```text
-Users
-Collections
-Licenses
-References
-Format Files
-Revisions
-Tags
-Categories
+OrigamiWork
+    = conceptual design
+        │
+        ▼
+OrigamiEdition
+    = published expression of that design
+        │
+        ▼
+DigitalArtifact
+    = file, media asset, or digital representation
 ```
 
-Future entities may emerge as the platform evolves.
+A work is not a file.
+
+An edition is not a file.
+
+A file may represent a work or edition, but it is never the work itself.
+
+---
+
+## Identity and Attribution
+
+User accounts and attribution identities are independent:
+
+```text
+User ≠ Party
+```
+
+- A **User** is an account that authenticates and participates in the platform.
+- A **Party** is a person or organization that can receive credit.
+
+A historical designer may exist only as a Party.
+
+A community participant may exist only as a User.
+
+A participating designer may be both.
+
+---
+
+## Domains
+
+The knowledge model is organized into domains. Each domain owns the concepts it defines, and other domains reference those concepts rather than redefining them.
+
+```text
+Origami Vault
+├── Catalog Domain              (MVP)
+├── Attribution Domain          (MVP)
+├── Rights Domain               (MVP)
+├── Instruction Domain          (MVP)
+├── Artifact Domain             (MVP)
+├── FOLD Domain                 (MVP)
+├── Provenance Domain           (MVP)
+├── Taxonomy Domain
+├── Notation Domain
+├── External Reference Domain
+└── Community Domain
+```
+
+| Domain             | Owns                                                                            |
+|--------------------|---------------------------------------------------------------------------------|
+| Catalog            | Works, editions, titles, and relationships between works                        |
+| Attribution        | Parties, credits, contribution roles, attribution evidence and status           |
+| Rights             | Licenses, permissions, and rights statements                                    |
+| Instruction        | Instructional sequences, steps, actions, annotations, and learning metadata     |
+| Artifact           | Preserved files, versions, derivatives, checksums, and preservation copies      |
+| FOLD               | Parsed, validated, and interpreted FOLD-specific information                    |
+| Provenance         | Sources, imports, derivations, transformations, validation and curation history |
+| Taxonomy           | Techniques, bases, classifications, and controlled vocabularies                 |
+| Notation           | Notation systems, meanings, variants, and conventions                           |
+| External Reference | Citations, bibliographic references, and external identifiers                   |
+| Community          | Collections, contributions, completed folds, and collaboration                  |
+
+Detailed specifications for each domain will be maintained in `docs/DATA_MODEL/`.
+
+---
+
+## Instruction and Geometry
+
+Instructional knowledge and geometric representation are modeled separately:
+
+```text
+InstructionStep ≠ FoldFrame
+```
+
+An instruction step may link to one or more geometric states, but geometry alone does not define learner actions, pedagogical intent, warnings, tips, or sequencing.
 
 ---
 
@@ -278,13 +348,16 @@ Responsibilities include:
 
 - Authentication
 - Authorization
-- User management
-- Creator management
-- Model management
+- User account management
+- Catalog management (works and editions)
+- Attribution management (parties and credits)
+- Rights management
+- Instruction management
+- Artifact preservation and file management
+- FOLD parsing and validation
+- Provenance recording
 - Revision management
-- Metadata management
 - Search
-- File management
 - API delivery
 
 ---
@@ -302,6 +375,8 @@ Future authentication:
 - Microsoft
 
 Authentication should remain loosely coupled from domain models.
+
+User accounts are not attribution identities. A User may be linked to a Party, but credit is always recorded against the Party in the Attribution Domain.
 
 ---
 
@@ -356,55 +431,44 @@ The Godot client should consume APIs and never directly access databases.
 
 # Data Architecture
 
-## Core Domains
+## Conceptual Model and Persistence
 
-### Users
+The conceptual data model is the canonical description of Origami Vault knowledge.
 
-Platform members.
+Database schemas, Rails models, API payloads, and file formats are implementations of that model, not definitions of it.
 
-### Creators
+Implementation rules:
 
-Designers, artists, organizations, and contributors.
+- Each domain in the Domain Architecture should map to a clearly bounded module within the Rails application.
+- Cross-domain relationships should be explicit references, not duplicated data.
+- Each concept should have a single authoritative record within its owning domain.
+- Persistence choices may change over time without changing the conceptual model.
 
-Creators may or may not be registered users.
+---
 
-### Models
+## Claims, Provenance, and Unknown Values
 
-Origami creations and associated metadata.
+The persistence layer must be able to represent:
 
-### Instructions
+- **Claims**: imported or submitted information preserved as source data before it becomes curated or verified knowledge.
+- **Provenance**: where each important value came from and how it was produced (uploaded, imported, inherited, computed, converted, inferred, curated, or verified).
+- **Unknown values**: explicit records that information is unknown, rather than empty fields or assumed values.
+- **Conflicting claims**: multiple claims about the same fact, preserved side by side with their evidence.
 
-Folding knowledge.
+Verification status should remain separate from claim existence.
 
-### Steps
+---
 
-Individual instructional stages.
+## Domain Specifications
 
-### Media
+Detailed entity definitions, fields, and relationships are maintained per domain:
 
-Images, PDFs, diagrams, videos, and supporting files.
-
-### Collections
-
-Curated groupings of models.
-
-### References
-
-External resources and citations.
-
-### Licenses
-
-Ownership and usage rights.
-
-### Format Files
-
-Machine-readable representations.
-
-Examples:
-
-- FOLD
-- ORIPA exports
-- Future standards
+```text
+docs/DATA_MODEL/
+├── 00_DATA_MODEL_PRINCIPLES.md
+├── 01_CATALOG_DOMAIN.md
+└── ...
+```
 
 ---
 
@@ -414,16 +478,16 @@ Metadata should be treated as first-class information.
 
 Examples:
 
-- Creator
-- Title
-- Description
-- Tags
-- Categories
-- Difficulty
-- Attribution
-- Licensing
-- Source references
-- Historical information
+- Titles (Catalog)
+- Descriptions (Catalog)
+- Credits and attribution (Attribution)
+- Licensing (Rights)
+- Techniques, bases, and classifications (Taxonomy)
+- Difficulty (Instruction)
+- Source references (External Reference)
+- Historical information (Provenance)
+
+Each metadata concept is owned by a single domain.
 
 Metadata should be:
 
@@ -431,7 +495,12 @@ Metadata should be:
 - Queryable
 - Exportable
 - Versionable
+- Traceable to its source
 - Preserved long term
+
+Imported metadata is a claim, not authoritative knowledge. It should be preserved as source data and may later become curated or verified.
+
+Metadata is progressive. Minimum information should remain small, and unknown values are valid states.
 
 ---
 
@@ -555,16 +624,22 @@ Future evaluation:
 
 - GraphQL
 
-API domains may include:
+API resources should follow domain boundaries.
 
-- Models
-- Creators
-- Instructions
-- Collections
+Initial API areas may include:
+
+- Catalog (works, editions)
+- Attribution (parties, credits)
+- Rights (licenses)
+- Instruction (instructions, steps)
+- Artifacts (files, derivatives)
+- FOLD (parsed and validated FOLD data)
+- Provenance
 - Search
-- Metadata
-- Licensing
-- Formats
+
+Future API areas may include Taxonomy, Notation, External References, and Community.
+
+APIs should expose provenance and verification status alongside the data they describe.
 
 Future clients should not require architectural redesign.
 
@@ -598,13 +673,15 @@ Knowledge preservation includes preserving history.
 
 Future versions should support:
 
-- Model revisions
+- Work and edition revisions
 - Metadata revisions
 - Instruction revisions
 - Attribution history
 - Historical snapshots
 
 Version history should be considered part of the preserved knowledge.
+
+Superseded interpretations may remain valuable and should not be destroyed. Curated conclusions should not erase the claims and evidence they were based on.
 
 ---
 
