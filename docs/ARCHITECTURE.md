@@ -171,7 +171,7 @@ Origami Vault will begin as a modular monolith.
 The Rails application will contain:
 
 - Authentication and user accounts
-- Domain modules (Catalog, Attribution, Rights, Instruction, Artifact, FOLD, Provenance)
+- Domain modules (Catalog, Attribution, Rights, Instruction, Artifact, FOLD, Provenance, External Reference)
 - Contribution and curation workflows
 - Search
 - APIs
@@ -220,7 +220,8 @@ OrigamiWork
         │
         ▼
 OrigamiEdition
-    = published expression of that design
+    = distinct published, translated, reconstructed, adapted,
+      or otherwise curated expression of that design
         │
         ▼
 DigitalArtifact
@@ -269,13 +270,13 @@ Origami Vault
 ├── Provenance Domain           (MVP)
 ├── Taxonomy Domain
 ├── Notation Domain
-├── External Reference Domain
+├── External Reference Domain   (MVP)
 └── Community Domain
 ```
 
 | Domain             | Owns                                                                            |
 |--------------------|---------------------------------------------------------------------------------|
-| Catalog            | Works, editions, titles, and relationships between works                        |
+| Catalog            | Works, editions, titles, relationships between works, and edition-level revisions |
 | Attribution        | Parties, credits, contribution roles, attribution evidence and status           |
 | Rights             | Licenses, permissions, and rights statements                                    |
 | Instruction        | Instructional sequences, steps, actions, annotations, and learning metadata     |
@@ -356,6 +357,7 @@ Responsibilities include:
 - Artifact preservation and file management
 - FOLD parsing and validation
 - Provenance recording
+- External reference management
 - Revision management
 - Search
 - API delivery
@@ -483,7 +485,7 @@ Examples:
 - Credits and attribution (Attribution)
 - Licensing (Rights)
 - Techniques, bases, and classifications (Taxonomy)
-- Difficulty (Instruction)
+- Difficulty and recommended paper (Instruction)
 - Source references (External Reference)
 - Historical information (Provenance)
 
@@ -635,9 +637,10 @@ Initial API areas may include:
 - Artifacts (files, derivatives)
 - FOLD (parsed and validated FOLD data)
 - Provenance
+- External References
 - Search
 
-Future API areas may include Taxonomy, Notation, External References, and Community.
+Future API areas may include Taxonomy, Notation, and Community.
 
 APIs should expose provenance and verification status alongside the data they describe.
 
@@ -673,7 +676,8 @@ Knowledge preservation includes preserving history.
 
 Future versions should support:
 
-- Work and edition revisions
+- Edition revisions
+- Work record change history, preserved through provenance
 - Metadata revisions
 - Instruction revisions
 - Attribution history

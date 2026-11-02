@@ -37,7 +37,8 @@ OrigamiWork
     = conceptual design
 
 OrigamiEdition
-    = published expression of that design
+    = distinct published, translated, reconstructed, adapted,
+      or otherwise curated expression of that design
 
 DigitalArtifact
     = file, media asset, or digital representation
@@ -342,7 +343,7 @@ Origami Vault
 
 ## Catalog Domain
 
-Represents conceptual origami knowledge, publication structure, work identity, editions, titles, and relationships between works.
+Represents conceptual origami knowledge, publication structure, work identity, editions, titles, relationships between works, and edition-level revisions.
 
 ## Attribution Domain
 
@@ -401,6 +402,7 @@ Primary focus domains:
 - Artifact
 - FOLD
 - Provenance
+- External Reference
 
 ## Future Expansion
 

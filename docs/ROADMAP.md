@@ -82,6 +82,8 @@ This phase prioritizes content, creators, discoverability, and preservation.
 - Edit model information
 - Upload model images
 - Categorize models
+- Record editions of a model
+- Record relationships between models
 
 ### Metadata
 
@@ -106,15 +108,15 @@ This phase prioritizes content, creators, discoverability, and preservation.
 - Search by category
 - Search by tags
 
-### Collections
+### External References
 
-- Favorite models
-- Personal collections
+- Reference external sources from models and editions
+- Preserve references to content not hosted by Origami Vault
 
 ### Standards Integration
 
 - Import metadata from supported formats
-- Store references to FOLD files when applicable
+- Preserve uploaded FOLD files
 - Preserve interoperability opportunities for future versions
 
 ### Not Included
@@ -154,6 +156,11 @@ Transform Origami Vault from a repository into a community-driven platform.
 - Featured models
 - Trending content
 - Curated collections
+
+### Collections
+
+- Favorite models
+- Personal collections
 
 ### Moderation
 
