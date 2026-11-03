@@ -2,7 +2,7 @@
 
 ## Origami Vault Catalog Domain
 
-**Version:** 2.4
+**Version:** 2.5
 
 **Status:** Frozen
 
@@ -12,8 +12,9 @@
 - Conceptual Entity Pass: Completed
 - Post-Review Amendments: Applied; see [Resolved Decisions](#resolved-decisions)
 - FOLD Dependency Review (Version 2.4): Completed
+- Data Model Consistency Review (Version 2.5): Completed
 
-This document supersedes `01_CATALOG_DOMAIN_CONCEPTUAL_ENTITY_PASS.md` and incorporates the corrections from `01_CATALOG_DOMAIN_v2_FREEZE_CANDIDATE.md`, with the post-review amendments recorded under [Resolved Decisions](#resolved-decisions).
+This document supersedes `01_CATALOG_DOMAIN_CONCEPTUAL_ENTITY_PASS.md` and incorporates the corrections from `01_CATALOG_DOMAIN_v2_FREEZE_CANDIDATE.md`, with the post-review amendments recorded under [Resolved Decisions](#resolved-decisions). Both source documents are preserved in `docs/DATA_MODEL/history/`.
 
 ---
 
@@ -50,10 +51,11 @@ The Catalog Domain does not own:
 - FOLD documents or frames.
 - Import, validation, transformation, or value-provenance records.
 - Techniques, bases, categories, or tags.
-- Community accounts or participation records.
+- Community participation records.
+- User accounts, which belong to Authentication outside the knowledge model.
 - Recommended paper information, which is owned by the Instruction Domain.
 
-Those concepts are owned by their respective domains and may reference Catalog entities.
+Those concepts are owned outside Catalog and may reference Catalog entities.
 
 ---
 
@@ -134,9 +136,15 @@ Imported metadata never becomes authoritative Catalog knowledge automatically.
 
 Until `EditionTitle` is implemented, a curated edition title is recorded in the `OrigamiEdition.title` display field.
 
-## Curated Values and Competing Claims
+## Acceptance of Catalog Values
 
-Catalog holds the curated value. Competing claims, such as a disputed publication date, remain preserved in the Provenance Domain.
+Imported information remains a claim until it is explicitly accepted. Direct entry by an authorized contributor counts as acceptance, with its provenance recorded. Acceptance does not mean verification.
+
+`WorkRelationship` is a deliberate exception. Relationship claims are Catalog's own subject matter and may be recorded in Catalog with the status Claimed. Only an explicit act of recording creates one; an import alone never does.
+
+## Accepted Values and Competing Claims
+
+Catalog holds the accepted value. Competing claims, such as a disputed publication date, remain preserved in the Provenance Domain.
 
 Provenance records may attach to any Catalog entity or value, including `WorkTitle`, `WorkRelationship`, and `Revision`.
 
@@ -144,7 +152,7 @@ Provenance records may attach to any Catalog entity or value, including `WorkTit
 
 Catalog values may be unknown. An unknown value is recorded explicitly rather than left ambiguous or replaced with an assumption.
 
-This applies to `OrigamiEdition.languages`, `OrigamiEdition.publication_date`, `WorkTitle.language`, and `Revision.revision_date`.
+This applies to `OrigamiEdition.edition_type`, `OrigamiEdition.languages`, `OrigamiEdition.publication_date`, `WorkTitle.language`, and `Revision.revision_date`.
 
 Dates may be exact, partial (year or year and month), approximate, or unknown, so that historical knowledge is recorded at the precision the evidence supports. An unknown language is recorded with the BCP 47 tag `und`.
 
@@ -247,7 +255,7 @@ When a work is merged into a surviving work:
 - Its titles remain on the merged work and are copied to the surviving work, except where the same title and language already exist. Copied titles keep their type, except that `Primary` becomes `Alternative`, and they are not marked as preferred.
 - Records owned by other domains reach the surviving work through `merged_into_work_id`, unless their owning domain defines otherwise.
 
-When a work is split, curation assigns each edition to exactly one resulting work.
+When a work is split, curation assigns each edition to exactly one resulting work and determines which titles and relationships apply to each resulting work.
 
 Provenance records every move, copy, and assignment, so that the prior state can be reconstructed.
 
@@ -729,7 +737,7 @@ OrigamiEdition
   └── Provenance records
 ```
 
-The referenced concepts remain owned by their respective domains.
+The referenced concepts remain owned by their respective domains. Each cross-domain link is owned by the referencing domain, which defines its meaning.
 
 ## External Reference Scope
 
@@ -775,7 +783,8 @@ Catalog does not own:
 - FOLD geometry or frames.
 - Imported claims, provenance evidence, transformations, or validation reports.
 - Taxonomy vocabulary.
-- Community identity or participation.
+- Community participation.
+- User accounts or authentication.
 - Recommended paper information.
 
 ---
@@ -813,6 +822,8 @@ MVP Catalog entities:
 The MVP workflow may progressively collect metadata, but every record that exists must satisfy its integrity rules.
 
 Phase 1 in this document corresponds to Version 0.1 in `ROADMAP.md`. Phase 2 denotes a later release that has not yet been assigned to a roadmap version.
+
+In the MVP, the Taxonomy Domain provides categories and tags. Techniques and bases follow in a later release.
 
 ---
 
@@ -931,6 +942,11 @@ Preserve uncertainty, avoid automatic merges, and use explicit relationships, su
 - **Multi-subject artifacts:** An artifact may represent several works or editions. The Artifact Domain owns the link and any locator, such as a frame range, page range, or timecode.
 - **Recommended paper information:** This is owned by the Instruction Domain.
 - **Composite works:** `Component Of` records that one work is a part of another. A part is a separate work only when it has an independent design identity, and quantities and assembly belong to the Instruction Domain.
+- **Acceptance of values:** Imported information remains a claim until accepted, and direct entry by an authorized contributor counts as acceptance. `WorkRelationship` claims are a deliberate exception and may be recorded as Claimed.
+- **Taxonomy in the MVP:** The Taxonomy Domain provides categories and tags in the MVP. Techniques and bases follow later.
+- **User accounts:** Accounts belong to Authentication, outside the knowledge model.
+- **Cross-domain link ownership:** Each cross-domain link is owned by the referencing domain.
+- **Split effects:** Curation also determines which titles and relationships apply to each resulting work.
 
 ---
 
@@ -939,6 +955,7 @@ Preserve uncertainty, avoid automatic merges, and use explicit relationships, su
 - What is the exact `PublicationContainer` subtype hierarchy?
 - When should `EditionTitle` be implemented?
 - Does `Series` belong in Catalog Phase 2 or later?
+- Should `description` and `publication_statement` support multiple languages?
 
 These questions do not block:
 

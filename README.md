@@ -178,6 +178,7 @@ Primary MVP domains:
 - FOLD
 - Provenance
 - External Reference
+- Taxonomy (categories and tags)
 
 Future releases may expand into community systems, reputation mechanisms, advanced notation support, geometry editing, simulation capabilities, and additional interchange standards.
 

@@ -27,7 +27,7 @@ User-facing language and model terminology may differ. This document uses the fo
 | User             | An account on the platform.                                                           | Authentication (outside the knowledge model) |
 | Party            | A person or organization that can receive credit. May or may not be a User.           | Attribution                                  |
 | Credit           | A record linking a Party to a work, edition, or artifact through a contribution role. | Attribution                                  |
-| Claim            | Information that has been submitted or imported but not necessarily verified.         | Provenance                                   |
+| Claim            | Imported information that has not yet been accepted. Direct entry by an authorized contributor counts as acceptance, which does not mean verification. | Provenance                                   |
 
 ---
 

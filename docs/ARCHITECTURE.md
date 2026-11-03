@@ -171,7 +171,7 @@ Origami Vault will begin as a modular monolith.
 The Rails application will contain:
 
 - Authentication and user accounts
-- Domain modules (Catalog, Attribution, Rights, Instruction, Artifact, FOLD, Provenance, External Reference)
+- Domain modules (Catalog, Attribution, Rights, Instruction, Artifact, FOLD, Provenance, External Reference, Taxonomy)
 - Contribution and curation workflows
 - Search
 - APIs
@@ -268,7 +268,7 @@ Origami Vault
 ├── Artifact Domain             (MVP)
 ├── FOLD Domain                 (MVP)
 ├── Provenance Domain           (MVP)
-├── Taxonomy Domain
+├── Taxonomy Domain             (MVP: categories and tags)
 ├── Notation Domain
 ├── External Reference Domain   (MVP)
 └── Community Domain
@@ -358,6 +358,7 @@ Responsibilities include:
 - FOLD parsing and validation
 - Provenance recording
 - External reference management
+- Taxonomy management (categories and tags)
 - Revision management
 - Search
 - API delivery
@@ -452,7 +453,7 @@ Implementation rules:
 
 The persistence layer must be able to represent:
 
-- **Claims**: imported or submitted information preserved as source data before it becomes curated or verified knowledge.
+- **Claims**: imported information preserved as source data until it is accepted. Direct entry by an authorized contributor counts as acceptance, with its provenance recorded, and acceptance does not mean verification.
 - **Provenance**: where each important value came from and how it was produced (uploaded, imported, inherited, computed, converted, inferred, curated, or verified).
 - **Unknown values**: explicit records that information is unknown, rather than empty fields or assumed values.
 - **Conflicting claims**: multiple claims about the same fact, preserved side by side with their evidence.
@@ -638,9 +639,10 @@ Initial API areas may include:
 - FOLD (parsed and validated FOLD data)
 - Provenance
 - External References
+- Taxonomy (categories, tags)
 - Search
 
-Future API areas may include Taxonomy, Notation, and Community.
+Future API areas may include Notation and Community.
 
 APIs should expose provenance and verification status alongside the data they describe.
 

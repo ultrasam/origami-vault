@@ -2,7 +2,7 @@
 
 ## Origami Vault Data Model Principles
 
-**Version:** Draft 1.1
+**Version:** Draft 1.2
 
 **Status:** Foundational Specification
 
@@ -122,6 +122,13 @@ Examples:
 - Imported descriptions
 
 Imported information should be preserved as source data and may later become curated or verified knowledge.
+
+Rules:
+
+- Imported information remains a claim until it is explicitly accepted.
+- Direct entry by an authorized contributor counts as acceptance, with its provenance recorded.
+- Acceptance does not mean verification. Verification status remains separate.
+- A domain may keep explicit claims as its own records when those claims are its subject matter, as the Catalog Domain does with work relationships. An import alone never creates such a record.
 
 ---
 
@@ -355,7 +362,7 @@ Represents licensing, permissions, rights statements, and future rights-manageme
 
 ## Instruction Domain
 
-Represents educational and pedagogical knowledge, instructional sequencing, actions, techniques, annotations, media, and learning-oriented metadata.
+Represents educational and pedagogical knowledge, instructional sequencing, actions, references to techniques, annotations, media, and learning-oriented metadata.
 
 ## Artifact Domain
 
@@ -403,12 +410,14 @@ Primary focus domains:
 - FOLD
 - Provenance
 - External Reference
+- Taxonomy (categories and tags)
 
 ## Future Expansion
 
 Future releases may expand:
 
 - Community features
+- Taxonomy techniques and bases
 - Reputation systems
 - Achievement systems
 - Advanced notation support

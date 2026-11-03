@@ -113,9 +113,20 @@ This phase prioritizes content, creators, discoverability, and preservation.
 - Reference external sources from models and editions
 - Preserve references to content not hosted by Origami Vault
 
+### Rights
+
+- Record licensing information for models, editions, and files
+- Record unknown licenses explicitly
+
+### Preservation & Provenance
+
+- Preserve original uploaded files without modification
+- Record checksums for preserved files
+- Record where uploaded and imported information came from
+
 ### Standards Integration
 
-- Import metadata from supported formats
+- Import metadata from supported formats as claims for review
 - Preserve uploaded FOLD files
 - Preserve interoperability opportunities for future versions
 
