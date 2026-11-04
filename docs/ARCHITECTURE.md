@@ -146,6 +146,7 @@ origami-vault
 
 ├── docs
 │   ├── DATA_MODEL
+│   ├── policies
 │   └── research
 ├── backend
 │   └── rails-api
@@ -454,7 +455,7 @@ Implementation rules:
 The persistence layer must be able to represent:
 
 - **Claims**: imported information preserved as source data until it is accepted. Direct entry by an authorized contributor counts as acceptance, with its provenance recorded, and acceptance does not mean verification.
-- **Provenance**: where each important value came from and how it was produced (uploaded, imported, inherited, computed, converted, inferred, curated, or verified).
+- **Provenance**: where each important value came from and how it was produced (uploaded, imported, contributed, inherited, computed, converted, inferred, curated, or unknown). Verification status is recorded separately from origin.
 - **Unknown values**: explicit records that information is unknown, rather than empty fields or assumed values.
 - **Conflicting claims**: multiple claims about the same fact, preserved side by side with their evidence.
 
@@ -470,6 +471,7 @@ Detailed entity definitions, fields, and relationships are maintained per domain
 docs/DATA_MODEL/
 ├── 00_DATA_MODEL_PRINCIPLES.md
 ├── 01_CATALOG_DOMAIN.md
+├── 02_PROVENANCE_DOMAIN.md
 └── ...
 ```
 

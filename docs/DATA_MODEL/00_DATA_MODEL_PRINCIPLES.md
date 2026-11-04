@@ -2,7 +2,7 @@
 
 ## Origami Vault Data Model Principles
 
-**Version:** Draft 1.2
+**Version:** Draft 1.3
 
 **Status:** Foundational Specification
 
@@ -140,12 +140,14 @@ Examples:
 
 - Uploaded values
 - Imported values
+- Contributed values
 - Inherited values
 - Computed values
 - Converted values
 - Inferred values
 - Curated values
-- Verified values
+
+Origin and verification are independent. Origin describes how a value was produced, and verification status describes what review has concluded. An imported value may be verified, and a curated value may remain unverified.
 
 Users and maintainers should be able to determine where information came from and how it was produced.
 

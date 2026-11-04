@@ -166,7 +166,8 @@ Metadata should remain searchable and exportable.
 
 Metadata shall also:
 
-- Record its provenance (uploaded, imported, inherited, computed, converted, inferred, curated, or verified).
+- Record its origin (uploaded, imported, contributed, inherited, computed, converted, inferred, curated, or unknown).
+- Record its verification status separately from its origin.
 - Treat imported metadata as a claim rather than authoritative knowledge.
 - Allow values to be explicitly recorded as unknown.
 - Allow conflicting claims to coexist when evidence supports multiple interpretations.
@@ -517,6 +518,10 @@ The platform shall record provenance for:
 Transformation records should include the source, output, tool, tool version, timestamp, and any warnings.
 
 Curated or verified conclusions shall not destroy the claims and evidence they were derived from.
+
+When a user account is deleted, the platform shall remove personal details from its provenance records and keep its activities under an opaque label.
+
+The platform shall restrict access to content before destroying it, and shall redact content only when removal is legally required. Each restriction or redaction shall be decided by a person and recorded.
 
 ---
 

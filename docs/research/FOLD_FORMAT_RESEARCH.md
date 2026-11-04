@@ -326,12 +326,16 @@ The reference API can compute optional topology from other data, including:
 Origami Vault must distinguish the provenance of every interpreted value:
 
 - `uploaded` — present in the source artifact
+- `imported` — brought from an artifact, file metadata, or external system as a claim, and later accepted without change
+- `contributed` — entered directly by an authorized contributor
 - `inherited` — obtained through FOLD frame inheritance
 - `computed` — derived algorithmically
 - `converted` — produced by format conversion
 - `inferred` — suggested from incomplete information
 - `curated` — edited by a human curator
-- `verified` — reviewed and accepted under a defined process
+- `unknown` — the origin is unknown
+
+These labels are Origami Vault's own, not FOLD properties. Verification is recorded separately from origin. See `docs/DATA_MODEL/02_PROVENANCE_DOMAIN.md`.
 
 Derived data must never be presented as though it had been supplied in the original artifact.
 
