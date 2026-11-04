@@ -93,6 +93,12 @@ This phase prioritizes content, creators, discoverability, and preservation.
 - Basic account limits
 - Content reporting
 
+### Community Contribution
+
+- Public contributor pages showing what each person has contributed
+- Suggest changes to published information
+- Open requests for missing information that people can help with
+
 ### Metadata
 
 - Model name
