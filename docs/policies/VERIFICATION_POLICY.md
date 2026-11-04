@@ -10,7 +10,7 @@
 
 # Purpose
 
-This policy defines when a value may be marked Verified, as described in `docs/DATA_MODEL/02_PROVENANCE_DOMAIN.md`.
+This policy defines when a value or a domain-owned claim, such as a credit, may be marked Verified, as described in `docs/DATA_MODEL/02_PROVENANCE_DOMAIN.md`.
 
 A `CurationDecision` that verifies a value identifies the version of this policy that it applied.
 
@@ -18,7 +18,7 @@ A `CurationDecision` that verifies a value identifies the version of this policy
 
 # Criteria
 
-A value may be marked Verified only when all of these are true:
+A value or claim may be marked Verified only when all of these are true:
 
 - **Evidence is inspectable:** At least one source is linked with a locator, such as a page or timecode.
 - **The source is strong enough:** There is one primary source or two independent secondary sources.

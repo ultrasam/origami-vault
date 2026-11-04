@@ -27,7 +27,7 @@ User-facing language and model terminology may differ. This document uses the fo
 | User             | An account on the platform.                                                           | Authentication (outside the knowledge model) |
 | Party            | A person or organization that can receive credit. May or may not be a User.           | Attribution                                  |
 | Credit           | A record linking a Party to a work, edition, or artifact through a contribution role. | Attribution                                  |
-| Claim            | Imported information that has not yet been accepted. Direct entry by an authorized contributor counts as acceptance, which does not mean verification. | Provenance                                   |
+| Claim            | Imported information or a suggested change that has not yet been accepted. Direct entry by an authorized contributor counts as acceptance, which does not mean verification. | Provenance                                   |
 
 ---
 
@@ -366,6 +366,47 @@ Additional information can be added later.
 Incomplete information shall never prevent preservation.
 
 The platform should encourage gradual improvement rather than demanding completeness.
+
+---
+
+## Guided Entry
+
+Data entry for any domain should use a wizard-like, step-by-step process by default, following Principle 18 of the data model.
+
+A first submission of a work could follow these steps:
+
+1. **What did you fold?** A title and a photo.
+2. **Who designed it?** A named person, the contributor, unknown, or traditional.
+3. **Tell us about it.** A short description, which can be skipped.
+4. **Can we share this?** One plain-language rights question.
+5. **Review and submit.** A preview of the finished entry.
+
+The guided process shall:
+
+- Save progress automatically, so contributors can leave and return.
+- Allow optional steps to be skipped.
+- Offer further enrichment after submission rather than requiring it first.
+- Remain optional for experienced contributors, who may use quicker forms or bulk options.
+
+A first-time contributor should be able to submit a work in under 3 minutes.
+
+---
+
+## Publishing Contributions
+
+A contribution may be published immediately and shown as unreviewed. Curators may review it afterward, so publishing does not wait for curation.
+
+Basic account limits and content reporting shall protect against spam and bad data.
+
+An authorized contributor is any registered account in good standing.
+
+---
+
+## Changing Published Information
+
+The original contributor and curators may edit a contribution directly.
+
+Other users may suggest a change. A suggestion is preserved as a pending claim, with its evidence, until a curator or the original contributor reviews it.
 
 ---
 

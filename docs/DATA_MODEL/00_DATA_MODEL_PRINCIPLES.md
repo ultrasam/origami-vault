@@ -2,7 +2,7 @@
 
 ## Origami Vault Data Model Principles
 
-**Version:** Draft 1.3
+**Version:** Draft 1.4
 
 **Status:** Foundational Specification
 
@@ -126,7 +126,9 @@ Imported information should be preserved as source data and may later become cur
 Rules:
 
 - Imported information remains a claim until it is explicitly accepted.
+- An authorized contributor is any registered account in good standing.
 - Direct entry by an authorized contributor counts as acceptance, with its provenance recorded.
+- A change suggested to another contributor's published information is a claim until it is accepted.
 - Acceptance does not mean verification. Verification status remains separate.
 - A domain may keep explicit claims as its own records when those claims are its subject matter, as the Catalog Domain does with work relationships. An import alone never creates such a record.
 
@@ -330,6 +332,22 @@ Examples include attribution disputes, publication history disputes, and competi
 
 ---
 
+## Principle 18: Contribution Is Guided
+
+The complexity of the model must not become the complexity of contributing.
+
+Data entry in every domain should use guided, step-by-step experiences that ask one clear question at a time.
+
+Rules:
+
+- Each field is automatic, optional, or clearly worth asking a contributor for.
+- Questions use everyday language rather than model terminology.
+- Optional steps can be skipped, and progress is saved.
+- Enrichment is offered after submission rather than required before it.
+- Guided entry is the default, not the only route. Experienced contributors may use quicker forms or bulk options.
+
+---
+
 # Domain Overview
 
 ```text
@@ -356,7 +374,7 @@ Represents conceptual origami knowledge, publication structure, work identity, e
 
 ## Attribution Domain
 
-Represents identity, authorship, credit, contribution, attribution evidence, and attribution status.
+Represents identity, authorship, credit, contribution, and attribution status. Attribution evidence is recorded through the Provenance Domain.
 
 ## Rights Domain
 

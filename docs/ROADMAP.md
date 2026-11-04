@@ -85,6 +85,14 @@ This phase prioritizes content, creators, discoverability, and preservation.
 - Record editions of a model
 - Record relationships between models
 
+### Guided Contribution
+
+- Step-by-step wizard for entering a model
+- Automatic saving of drafts
+- Immediate publishing, shown as unreviewed
+- Basic account limits
+- Content reporting
+
 ### Metadata
 
 - Model name
@@ -175,7 +183,6 @@ Transform Origami Vault from a repository into a community-driven platform.
 
 ### Moderation
 
-- Content reporting
 - Administrative tools
 - Community guidelines
 
