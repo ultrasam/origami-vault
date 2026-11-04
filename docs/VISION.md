@@ -134,6 +134,20 @@ While Origami Vault does not seek to redefine existing standards, it aims to sup
 
 ---
 
+## Sustainability and Funding
+
+Origami Vault will be free for everyone. Reading, learning, and contributing will not require payment, and the knowledge the platform holds should remain exportable in open formats, so that it can outlive any single website.
+
+Free access does not override creators' rights. Materials are shared according to their rights and the permissions of those who hold them.
+
+Keeping a permanent archive alive has real costs, including hosting, storage, backups, and fair compensation for the people who maintain it. The project expects to fund them through sponsorships and crowdfunding, and may later seek grants or support from origami and preservation organizations.
+
+Funding must never influence knowledge. Sponsors and donors have no say in attribution, verification, or curation decisions.
+
+The project intends to report openly on how funds are used. The legal structure for receiving funds remains to be decided.
+
+---
+
 ## Guiding Principle
 
 Technology is not the goal.
