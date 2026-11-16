@@ -2,7 +2,7 @@
 
 ## Origami Vault Catalog Domain
 
-**Version:** 2.5
+**Version:** 2.6
 
 **Status:** Frozen
 
@@ -13,6 +13,7 @@
 - Post-Review Amendments: Applied; see [Resolved Decisions](#resolved-decisions)
 - FOLD Dependency Review (Version 2.4): Completed
 - Data Model Consistency Review (Version 2.5): Completed
+- Artifact Domain Alignment (Version 2.6): Applied
 
 This document supersedes `01_CATALOG_DOMAIN_CONCEPTUAL_ENTITY_PASS.md` and incorporates the corrections from `01_CATALOG_DOMAIN_v2_FREEZE_CANDIDATE.md`, with the post-review amendments recorded under [Resolved Decisions](#resolved-decisions). Both source documents are preserved in `docs/DATA_MODEL/history/`.
 
@@ -400,7 +401,6 @@ Create a new `ArtifactVersion`, not a new edition, when only the preserved file 
 - Corrected scan.
 - Re-encoded video.
 - Re-exported PDF.
-- New checksum-equivalent preservation copy.
 - Generated thumbnail or preview.
 
 Artifact-version semantics are owned by the Artifact Domain.
@@ -947,6 +947,7 @@ Preserve uncertainty, avoid automatic merges, and use explicit relationships, su
 - **User accounts:** Accounts belong to Authentication, outside the knowledge model.
 - **Cross-domain link ownership:** Each cross-domain link is owned by the referencing domain.
 - **Split effects:** Curation also determines which titles and relationships apply to each resulting work.
+- **Artifact versions:** A further stored copy of identical bytes does not create a new `ArtifactVersion`, as defined in the Artifact Domain.
 
 ---
 

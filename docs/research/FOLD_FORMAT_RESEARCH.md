@@ -477,6 +477,9 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 - `ImageArtifact`
 - `ExternalArtifact`
 - `Checksum`
+- `PreservationEvent`
+
+These were refined in `docs/DATA_MODEL/04_ARTIFACT_DOMAIN.md`: format-specific artifacts became `artifact_type` values, `Checksum` became part of `ArtifactVersion`, and `ExternalArtifact` is covered by the External Reference Domain.
 
 ### Import, Interpretation, and Validation
 
@@ -503,13 +506,12 @@ These concerns belong to Origami Vault’s broader knowledge model and platform 
 - `CompatibilityTest`
 - `RoundTripTestResult`
 
-### Community and Preservation
+### Community
 
 - `User`
 - `Collection`
 - `CollectionItem`
 - `Favorite`
-- `PreservationEvent`
 
 ### External Reference
 

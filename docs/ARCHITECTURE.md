@@ -473,6 +473,7 @@ docs/DATA_MODEL/
 ├── 01_CATALOG_DOMAIN.md
 ├── 02_PROVENANCE_DOMAIN.md
 ├── 03_ATTRIBUTION_DOMAIN.md
+├── 04_ARTIFACT_DOMAIN.md
 └── ...
 ```
 
@@ -702,11 +703,11 @@ Origami Vault distinguishes between:
 - Parsed representations
 - Normalized metadata
 - Validation results
-- Derived artifacts
+- Derived versions
 
 Original uploaded files represent preserved historical records and should never be modified after ingestion.
 
-Derived artifacts such as:
+Derived versions such as:
 
 - Previews
 - Generated meshes
@@ -714,7 +715,7 @@ Derived artifacts such as:
 - Thumbnails
 - Visualizations
 
-should be stored separately and linked through provenance relationships.
+should be stored separately from originals and linked to their sources through derivation and provenance records.
 
 FOLD artifacts, PDFs, images, videos, and future formats should all be treated as preserved source artifacts.
 
